@@ -1,6 +1,6 @@
 # Fusion Markup Language
 
-> One ~ring~ *markup language* to rule them all, One ~ring~ *markup language* to find them, One ~ring~ *markup language* to bring them all and in the darkness bind them
+> One *markup language* to rule them all, One *markup language* to find them, One *markup language* to bring them all and in the darkness bind them
 
 When it comes to markup languages, developers are spoiled with choice:
 
