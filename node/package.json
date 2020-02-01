@@ -1,0 +1,14 @@
+{
+  "name": "fusion-markup-language",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^7.0.1"
+  }
+}
