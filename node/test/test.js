@@ -1,9 +1,28 @@
 var assert = require('assert');
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
+const FusionMarkupLanguage = require('../index.js');
+const fml = new FusionMarkupLanguage();
+
+describe('FusionMarkupLanguage', () => {
+    describe('#parse()', () => {
+        it('should parse JSON', () => {
+            const parsed = fml.parse(`
+                {
+                    "person": {
+                        "name": {
+                            "firstName": "Harvey"
+                        }
+                    }
+                }
+            `);
+
+            assert.deepEqual(parsed, {
+                person: {
+                    name: {
+                        firstName: "Harvey"
+                    }
+                }
+            })
+        });
     });
-  });
 });
