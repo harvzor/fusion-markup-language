@@ -26,9 +26,7 @@ describe('FusionMarkupLanguage', () => {
                 }
             })
         })
-    })
 
-    describe('#parse()', () => {
         it('should parse just XML', () => {
             const parsed = fml.parse(`
                 <?xml version="1.0" encoding="UTF-8" ?>
@@ -40,7 +38,28 @@ describe('FusionMarkupLanguage', () => {
                 </person>
             `)
 
-            console.warn('parsed', parsed)
+            assert.deepEqual(parsed, {
+                person: {
+                    name: {
+                        firstName: "Rick",
+                        lastName: "Astley"
+                    }
+                }
+            })
+        })
+
+        it('should parse JSON in XML', () => {
+            const parsed = fml.parse(`
+                <?xml version="1.0" encoding="UTF-8" ?>
+                <person>
+                    {
+                        "name": {
+                            "firstName": "Rick",
+                            "lastName": "Astley"
+                        }
+                    }
+                </person>
+            `)
 
             assert.deepEqual(parsed, {
                 person: {

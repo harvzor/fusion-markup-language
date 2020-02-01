@@ -19,22 +19,31 @@ class FusionMarkupLanguage {
         {
             try
             {
-                let data = null
+                let result = null
                 let error = null
 
-                xmlParser.parseString(text, (fail, result) => {
+                xmlParser.parseString(text, (fail, res) => {
                     error = fail
-                    data = result
+                    result = res
                 })
 
                 if (error)
                     throw error
 
-                return data
+                console.warn('result', result)
 
-                // return xmlParser.parseString(text, (err, result) => {
-                //     return result
-                // })
+                for (let key of Object.keys(result)) {
+                    console.log('item', result[key])
+
+                    try
+                    {
+                        result[key] = JSON.parse(result[key])
+                        // result[key] = this.parse(JSON.stringify(result[key]))
+                    }
+                    catch (e) { }
+                }
+
+                return result;
             }
             catch (e)
             {
