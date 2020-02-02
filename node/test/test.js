@@ -70,5 +70,27 @@ describe('FusionMarkupLanguage', () => {
                 }
             })
         })
+
+        // it('should parse XML in JSON', () => {
+        //     const parsed = fml.parse(`
+        //         {
+        //             "person": {
+        //                 <name>
+        //                     <firstName>Rick</firstName>
+        //                     <lastName>Astley</lastName>
+        //                 </name>
+        //             }
+        //         }
+        //     `)
+
+        //     assert.deepEqual(parsed, {
+        //         person: {
+        //             name: {
+        //                 firstName: "Rick",
+        //                 lastName: "Astley"
+        //             }
+        //         }
+        //     })
+        // })
     })
 })

@@ -6,10 +6,12 @@ class FusionMarkupLanguage {
     constructor() {
 
     }
-    parse(text) {
+    parse(inputText) {
+        const filteredInputText = inputText.trim();
+
         try
         {
-            const result = JSON.parse(text)
+            const result = JSON.parse(filteredInputText)
 
             // console.log(result)
 
@@ -22,7 +24,7 @@ class FusionMarkupLanguage {
                 let result = null
                 let error = null
 
-                xmlParser.parseString(text, (fail, res) => {
+                xmlParser.parseString(filteredInputText, (fail, res) => {
                     error = fail
                     result = res
                 })
@@ -30,15 +32,10 @@ class FusionMarkupLanguage {
                 if (error)
                     throw error
 
-                console.warn('result', result)
-
                 for (let key of Object.keys(result)) {
-                    console.log('item', result[key])
-
                     try
                     {
                         result[key] = JSON.parse(result[key])
-                        // result[key] = this.parse(JSON.stringify(result[key]))
                     }
                     catch (e) { }
                 }
