@@ -4,51 +4,56 @@ const xmlParser = new require('xml2js').Parser({
 
 class FusionMarkupLanguage {
     constructor() {
+        this.dataTypeEnum = {
+            json: "JSON",
+            xml: "XML",
+        }
+    }
+    getDataType(inputText) {
+        const filteredInputText = inputText.trim();
 
+        if (filteredInputText.startsWith("{")) {
+            return this.dataTypeEnum.json
+        }
+
+        if (filteredInputText.startsWith("<")) {
+            return this.dataTypeEnum.xml
+        }
+
+        return null
     }
     parse(inputText) {
         const filteredInputText = inputText.trim();
+        const dataType = this.getDataType(filteredInputText);
 
-        try
-        {
+        if (dataType === this.dataTypeEnum.json) {
             const result = JSON.parse(filteredInputText)
-
-            // console.log(result)
 
             return result
         }
-        catch (e)
-        {
-            try
-            {
-                let result = null
-                let error = null
 
-                xmlParser.parseString(filteredInputText, (fail, res) => {
-                    error = fail
-                    result = res
-                })
+        if (dataType === this.dataTypeEnum.xml) {
+            let result = null
+            let error = null
 
-                if (error)
-                    throw error
+            xmlParser.parseString(filteredInputText, (fail, res) => {
+                error = fail
+                result = res
+            })
 
-                for (let key of Object.keys(result)) {
-                    try
-                    {
-                        result[key] = JSON.parse(result[key])
-                    }
-                    catch (e) { }
+            if (error)
+                throw error
+
+            for (let key of Object.keys(result)) {
+                try
+                {
+                    result[key] = JSON.parse(result[key])
                 }
+                catch (e) { }
+            }
 
-                return result;
-            }
-            catch (e)
-            {
-                throw e;
-                // throw "Failed to parse."
-            }
+            return result;
         }
-
     }
 }
 
