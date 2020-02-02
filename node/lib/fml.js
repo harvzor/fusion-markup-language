@@ -1,4 +1,8 @@
-const xmlParser = new require('xml2js').Parser({
+const xml2js = new require('xml2js')
+const xmlParser = new xml2js.Parser({
+    explicitArray: false // Otherwise children become arrays.
+})
+var xmlBuilder = new xml2js.Builder({
     explicitArray: false // Otherwise children become arrays.
 })
 
@@ -27,9 +31,44 @@ class FusionMarkupLanguage {
         const dataType = this.getDataType(filteredInputText);
 
         if (dataType === this.dataTypeEnum.json) {
-            const result = JSON.parse(filteredInputText)
+            try {
+                const result = JSON.parse(filteredInputText)
 
-            return result
+                return result
+            }
+            catch (e) {
+                if (!e.message.startsWith('Unexpected token < in JSON at position ')) {
+                    throw e
+                }
+
+                const lineNumber = parseInt(
+                    e.message.replace('Unexpected token < in JSON at position ', '')
+                )
+
+                const substring = filteredInputText.substring(lineNumber)
+
+                const obj = this.parse(substring)
+
+                if (this.getDataType(substring) === this.dataTypeEnum.xml) {
+                    const str = xmlBuilder.buildObject(obj)
+                        .replace('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n', '')
+                        // .replace(/  /g, '    ')
+
+                    let inputWithoutXml = filteredInputText
+
+                    str
+                        .split('\n')
+                        .forEach(xmlSegment => {
+                            inputWithoutXml = inputWithoutXml.replace(xmlSegment, '')
+                        })
+
+                    const json = JSON.parse(inputWithoutXml)
+
+                    return json
+                } else {
+                    throw 'Path not implemented'
+                }
+            }
         }
 
         if (dataType === this.dataTypeEnum.xml) {
@@ -45,11 +84,9 @@ class FusionMarkupLanguage {
                 throw error
 
             for (let key of Object.keys(result)) {
-                try
-                {
+                try {
                     result[key] = JSON.parse(result[key])
-                }
-                catch (e) { }
+                } catch (e) { }
             }
 
             return result;
