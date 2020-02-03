@@ -52,6 +52,14 @@ describe('FusionMarkupLanguage', () => {
         })
     })
 
+    describe('#findElementClosestToPosition()', () => {
+        it('it should find "person"', () => {
+            const elementName = fml.findElementClosestToPosition(`{ "person": { } }`, 13)
+
+            assert.equal(elementName, "person")
+        })
+    })
+
     describe('#parse()', () => {
         it('should parse just JSON', () => {
             const parsed = fml.parse(`

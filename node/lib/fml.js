@@ -1,8 +1,10 @@
 const xml2js = new require('xml2js')
+
 const xmlParser = new xml2js.Parser({
     explicitArray: false // Otherwise children become arrays.
 })
-var xmlBuilder = new xml2js.Builder({
+
+const xmlBuilder = new xml2js.Builder({
     explicitArray: false // Otherwise children become arrays.
 })
 
@@ -26,6 +28,17 @@ class FusionMarkupLanguage {
 
         return null
     }
+    findElementClosestToPosition(text, position) {
+        for (let i = position; i > 0; i--) {
+            if (text[i] === `"`) {
+                for (let i2 = i - 1; i2 > 0; i2--) {
+                    if (text[i2] === `"`) {
+                        return text.substring(i2 + 1, i)
+                    }
+                }
+            }
+        }
+    }
     parse(inputText) {
         const filteredInputText = inputText.trim();
         const dataType = this.getDataType(filteredInputText);
@@ -45,24 +58,27 @@ class FusionMarkupLanguage {
                     e.message.replace('Unexpected token < in JSON at position ', '')
                 )
 
-                const substring = filteredInputText.substring(lineNumber)
+                const xmlSubstring = filteredInputText.substring(lineNumber)
 
-                const obj = this.parse(substring)
+                const xmlObject = this.parse(xmlSubstring)
 
-                if (this.getDataType(substring) === this.dataTypeEnum.xml) {
-                    const str = xmlBuilder.buildObject(obj)
+                if (this.getDataType(xmlSubstring) === this.dataTypeEnum.xml) {
+                    const elements = xmlBuilder.buildObject(xmlObject)
                         .replace('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n', '')
-                        // .replace(/  /g, '    ')
 
                     let inputWithoutXml = filteredInputText
 
-                    str
+                    elements
                         .split('\n')
                         .forEach(xmlSegment => {
                             inputWithoutXml = inputWithoutXml.replace(xmlSegment, '')
                         })
 
+                    const elementName = this.findElementClosestToPosition(inputWithoutXml, lineNumber)
+
                     const json = JSON.parse(inputWithoutXml)
+
+                    json[elementName] = xmlObject
 
                     return json
                 } else {
