@@ -1,13 +1,13 @@
 {
   "name": "fusion-markup-language",
   "version": "0.0.1",
-  "description": "",
+  "description": "A fusion of markup languages.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "harvzor",
+  "license": "MIT",
   "devDependencies": {
     "mocha": "^7.0.1"
   },

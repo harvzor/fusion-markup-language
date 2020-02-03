@@ -20,13 +20,13 @@ Fusion Markup Language allows you to embed `json`, `xml` and `yaml` in the same 
 
 ## How?
 
-Install FML:
+Get FML:
 
 ```
 npm install fml
 ```
 
-Parse some `fml` in the same way as you would use `JSON.parse`:
+Parse some `fml` in the same way as you would use `JSON.parse()`:
 
 ```
 const FML = require('fml')
@@ -48,8 +48,8 @@ console.log(personObject)
 
 ## Why?
 
-When it comes to markup languages, developers are spoiled with choice, such as `csv`, `xml`, `json`, `yaml` and `toml`. But why should we pick one?
+When it comes to markup languages, developers are spoiled with choice, such as `csv`, `xml`, `json`, `yaml` and `toml`. But why should we pick just one?
 
-Fusion Markup Language attempts to provide a one-format-fits-all solution.
+Fusion Markup Language attempts to provide an all-in-one solution that can fit any size project.
 
 Just remember, when in doubt, think FML!
