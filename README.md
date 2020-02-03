@@ -2,6 +2,8 @@
 
 > One *markup language* to rule them all, One *markup language* to find them, One *markup language* to bring them all and in the darkness bind them
 
+![fusion-markup-language logo](github/fml.png)
+
 ## What?
 
 Fusion Markup Language combines the most popular markup languages into one language:
