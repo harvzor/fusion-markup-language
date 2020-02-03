@@ -23,13 +23,13 @@ Fusion Markup Language allows you to embed `json`, `xml` and `yaml` in the same 
 Get FML:
 
 ```
-npm install fml
+npm install fusion-markup-language
 ```
 
 Parse some `fml` in the same way as you would use `JSON.parse()`:
 
 ```
-const FML = require('fml')
+const FML = require('fusion-markup-language')
 
 const personObject = FML.parse(`
   <?xml version="1.0" encoding="UTF-8" ?>

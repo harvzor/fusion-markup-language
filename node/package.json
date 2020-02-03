@@ -17,12 +17,12 @@
     "test": "mocha"
   },
   "license": "MIT",
-  "main": "./lib/fml",
+  "main": "./lib/index",
   "devDependencies": {
     "mocha": "^7.0.1"
   },
   "dependencies": {
     "xml2js": "^0.4.23"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
