@@ -1,17 +1,28 @@
 {
   "name": "fusion-markup-language",
-  "version": "0.0.1",
+  "homepage": "https://github.com/Harvzor/fusion-markup-language/",
+  "author": {
+    "name": "Harvey Williams",
+    "url": "http://github.com/harvzor"
+  },
+  "engines": {
+    "node": ">=8.11.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harvzor/fusion-markup-language.git"
+  },
   "description": "A fusion of markup languages.",
-  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "harvzor",
   "license": "MIT",
+  "main": "./lib/fml",
   "devDependencies": {
     "mocha": "^7.0.1"
   },
   "dependencies": {
     "xml2js": "^0.4.23"
-  }
+  },
+  "version": "0.0.1"
 }
