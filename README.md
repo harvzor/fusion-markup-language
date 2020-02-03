@@ -53,4 +53,4 @@ When it comes to markup languages, developers are spoiled with choice, such as `
 
 Fusion Markup Language attempts to provide an all-in-one solution that can fit any size project.
 
-Just remember, when in doubt, think FML!
+When you're stuck deciding which markup language, just think FML!
