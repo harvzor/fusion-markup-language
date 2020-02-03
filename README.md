@@ -48,14 +48,8 @@ console.log(personObject)
 
 ## Why?
 
-When it comes to markup languages, developers are spoiled with choice:
-
-- csv
-- xml
-- json
-- yaml
-- toml
-
-It can be hard to decide which one to choose when starting with a project.
+When it comes to markup languages, developers are spoiled with choice, such as `csv`, `xml`, `json`, `yaml` and `toml`. But why should we pick one?
 
 Fusion Markup Language attempts to provide a one-format-fits-all solution.
+
+Just remember, when in doubt, think FML!
