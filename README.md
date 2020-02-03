@@ -10,13 +10,14 @@ Fusion Markup Language combines the most popular markup languages into one langu
 {
   "person": {
     <name>
-      firstName: "Harvey"
+      <firstName>Rick</firstName>
+      <lastName>Astley</lastName>
     </name>
   }
 }
 ```
 
-Fusion Markup Language allows you to embed `json`, `xml` and `yaml` in the same string, this new format is called **FML**.
+Fusion Markup Language allows you to embed `json` and `xml` in the same string, this new format is called **FML**.
 
 ## How?
 
