@@ -58,9 +58,13 @@ class FusionMarkupLanguage {
                     e.message.replace('Unexpected token < in JSON at position ', '')
                 )
 
-                const xmlSubstring = filteredInputText.substring(lineNumber)
+                let xmlSubstring = filteredInputText.substring(lineNumber)
 
                 const xmlObject = this.parse(xmlSubstring)
+
+                const elementClosingTag = `</${Object.keys(xmlObject)[0]}>`
+                const indexOfElementClosingTag = xmlSubstring.indexOf(elementClosingTag)
+                xmlSubstring = xmlSubstring.substring(0, indexOfElementClosingTag + elementClosingTag.length)
 
                 if (this.getDataType(xmlSubstring) === this.dataTypeEnum.xml) {
                     const elements = xmlBuilder.buildObject(xmlObject)
@@ -68,11 +72,14 @@ class FusionMarkupLanguage {
 
                     let inputWithoutXml = filteredInputText
 
-                    elements
-                        .split('\n')
-                        .forEach(xmlSegment => {
-                            inputWithoutXml = inputWithoutXml.replace(xmlSegment, '')
-                        })
+                    // elements
+                    //     .split('\n')
+                    //     .forEach(xmlSegment => {
+                    //         inputWithoutXml = inputWithoutXml.replace(xmlSegment, '')
+                    //     })
+
+
+                    inputWithoutXml = inputWithoutXml.replace(xmlSubstring, '')
 
                     const elementName = this.findElementClosestToPosition(inputWithoutXml, lineNumber)
 
