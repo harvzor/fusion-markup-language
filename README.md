@@ -2,6 +2,8 @@
 
 > One *markup language* to rule them all, One *markup language* to find them, One *markup language* to bring them all and in the darkness bind them
 
+## What?
+
 Fusion Markup Language combines the most popular markup languages into one language:
 
 ```fml
@@ -14,7 +16,35 @@ Fusion Markup Language combines the most popular markup languages into one langu
 }
 ```
 
-Fusion Markup Language allows you to embed `json`, `xml` and `yaml` into the same file.
+Fusion Markup Language allows you to embed `json`, `xml` and `yaml` in the same string, this new format is called **FML**.
+
+## How?
+
+Install FML:
+
+```
+npm install fml
+```
+
+Parse some `fml` in the same way as you would use `JSON.parse`:
+
+```
+const FML = require('fml')
+
+const personObject = FML.parse(`
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <person>
+      {
+          "name": {
+              "firstName": "Rick",
+              "lastName": "Astley"
+          }
+      }
+  </person>
+`)
+
+console.log(personObject)
+```
 
 ## Why?
 

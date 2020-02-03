@@ -1,1 +1,1 @@
-module.exports = require('./lib/fml.js').FusionMarkupLanguage;
+module.exports = require('./lib/fml.js').FML

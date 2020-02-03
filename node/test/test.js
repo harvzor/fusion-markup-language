@@ -1,12 +1,11 @@
 var assert = require('assert')
 
-const FusionMarkupLanguage = require('../index.js')
-const fml = new FusionMarkupLanguage()
+const FML = require('../index.js')
 
 describe('FusionMarkupLanguage', () => {
     describe('#getDataType()', () => {
         it('should be of type JSON', () => {
-            const dataType = fml.getDataType(`
+            const dataType = FML.getDataType(`
                 {
                     "person": {
                         <name>
@@ -17,11 +16,11 @@ describe('FusionMarkupLanguage', () => {
                 }
             `)
 
-            assert.equal(fml.dataTypeEnum.json, dataType)
+            assert.equal(FML.dataTypeEnum.json, dataType)
         })
 
         it('should be of type XML', () => {
-            const dataType = fml.getDataType(`
+            const dataType = FML.getDataType(`
                 <?xml version="1.0" encoding="UTF-8" ?>
                 <person>
                     {
@@ -33,11 +32,11 @@ describe('FusionMarkupLanguage', () => {
                 </person>
             `)
 
-            assert.equal(fml.dataTypeEnum.xml, dataType)
+            assert.equal(FML.dataTypeEnum.xml, dataType)
         })
 
         it('should not know the datatype', () => {
-            const dataType = fml.getDataType(`
+            const dataType = FML.getDataType(`
                 ?person
                     {
                         "name": {
@@ -54,7 +53,7 @@ describe('FusionMarkupLanguage', () => {
 
     describe('#findElementClosestToPosition()', () => {
         it('it should find "person"', () => {
-            const elementName = fml.findElementClosestToPosition(`{ "person": { } }`, 13)
+            const elementName = FML.findElementClosestToPosition(`{ "person": { } }`, 13)
 
             assert.equal(elementName, "person")
         })
@@ -62,7 +61,7 @@ describe('FusionMarkupLanguage', () => {
 
     describe('#parse()', () => {
         it('should parse just JSON', () => {
-            const parsed = fml.parse(`
+            const parsed = FML.parse(`
                 {
                     "person": {
                         "name": {
@@ -84,7 +83,7 @@ describe('FusionMarkupLanguage', () => {
         })
 
         it('should parse just XML', () => {
-            const parsed = fml.parse(`
+            const parsed = FML.parse(`
                 <?xml version="1.0" encoding="UTF-8" ?>
                 <person>
                     <name>
@@ -105,7 +104,7 @@ describe('FusionMarkupLanguage', () => {
         })
 
         it('should parse JSON in XML', () => {
-            const parsed = fml.parse(`
+            const parsed = FML.parse(`
                 <?xml version="1.0" encoding="UTF-8" ?>
                 <person>
                     {
@@ -128,7 +127,7 @@ describe('FusionMarkupLanguage', () => {
         })
 
         it('should parse XML in JSON', () => {
-            const parsed = fml.parse(`
+            const parsed = FML.parse(`
                 {
                     "person": {
                         <name>
@@ -150,7 +149,7 @@ describe('FusionMarkupLanguage', () => {
         })
 
         it('should parse JSON in XML in JSON', () => {
-            const parsed = fml.parse(`
+            const parsed = FML.parse(`
                 {
                     "person": {
                         <name>

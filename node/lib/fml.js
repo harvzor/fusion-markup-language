@@ -118,5 +118,5 @@ class FusionMarkupLanguage {
 }
 
 module.exports = {
-    FusionMarkupLanguage: FusionMarkupLanguage,
+    FML: new FusionMarkupLanguage(),
 };
