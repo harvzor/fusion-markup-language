@@ -15,7 +15,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceFolder}/node/test"
+                "${workspaceFolder}/test"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": [
