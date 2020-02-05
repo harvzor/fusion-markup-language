@@ -8,10 +8,8 @@ describe('FusionMarkupLanguage', () => {
             const dataType = FML.getDataType(`
                 {
                     "person": {
-                        <name>
-                            <firstName>Rick</firstName>
-                            <lastName>Astley</lastName>
-                        </name>
+                        <firstName>Rick</firstName>
+                        <lastName>Astley</lastName>
                     }
                 }
             `)
@@ -24,10 +22,8 @@ describe('FusionMarkupLanguage', () => {
                 <?xml version="1.0" encoding="UTF-8" ?>
                 <person>
                     {
-                        "name": {
-                            "firstName": "Rick",
-                            "lastName": "Astley"
-                        }
+                        "firstName": "Rick",
+                        "lastName": "Astley"
                     }
                 </person>
             `)
@@ -39,10 +35,8 @@ describe('FusionMarkupLanguage', () => {
             const dataType = FML.getDataType(`
                 ?person
                     {
-                        "name": {
-                            "firstName": "Rick",
-                            "lastName": "Astley"
-                        }
+                        "firstName": "Rick",
+                        "lastName": "Astley"
                     }
                 ?person
             `)
@@ -64,20 +58,16 @@ describe('FusionMarkupLanguage', () => {
             const parsed = FML.parse(`
                 {
                     "person": {
-                        "name": {
-                            "firstName": "Rick",
-                            "lastName": "Astley"
-                        }
+                        "firstName": "Rick",
+                        "lastName": "Astley"
                     }
                 }
             `)
 
             assert.deepEqual(parsed, {
                 person: {
-                    name: {
-                        firstName: "Rick",
-                        lastName: "Astley"
-                    }
+                    firstName: "Rick",
+                    lastName: "Astley"
                 }
             })
         })
@@ -86,19 +76,15 @@ describe('FusionMarkupLanguage', () => {
             const parsed = FML.parse(`
                 <?xml version="1.0" encoding="UTF-8" ?>
                 <person>
-                    <name>
-                        <firstName>Rick</firstName>
-                        <lastName>Astley</lastName>
-                    </name>
+                    <firstName>Rick</firstName>
+                    <lastName>Astley</lastName>
                 </person>
             `)
 
             assert.deepEqual(parsed, {
                 person: {
-                    name: {
-                        firstName: "Rick",
-                        lastName: "Astley"
-                    }
+                    firstName: "Rick",
+                    lastName: "Astley"
                 }
             })
         })
@@ -108,20 +94,51 @@ describe('FusionMarkupLanguage', () => {
                 <?xml version="1.0" encoding="UTF-8" ?>
                 <person>
                     {
-                        "name": {
-                            "firstName": "Rick",
-                            "lastName": "Astley"
-                        }
+                        "firstName": "Rick",
+                        "lastName": "Astley"
                     }
                 </person>
             `)
 
             assert.deepEqual(parsed, {
                 person: {
-                    name: {
-                        firstName: "Rick",
-                        lastName: "Astley"
-                    }
+                    firstName: "Rick",
+                    lastName: "Astley"
+                }
+            })
+        })
+
+        it('should parse multiple nodes with JSON in XML', () => {
+            const parsed = FML.parse(`
+                <?xml version="1.0" encoding="UTF-8" ?>
+                <people>
+                    <person>
+                        {
+                            "firstName": "Rick",
+                            "lastName": "Astley"
+                        }
+                    </person>
+                    <person>
+                        {
+                            "firstName": "Park",
+                            "lastName": "Jae-sang"
+                        }
+                    </person>
+                </people>
+            `)
+
+            assert.deepEqual(parsed, {
+                people: {
+                    person: [
+                        {
+                            firstName: "Rick",
+                            lastName: "Astley"
+                        },
+                        {
+                            firstName: "Park",
+                            lastName: "Jae-sang"
+                        }
+                    ]
                 }
             })
         })
