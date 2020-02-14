@@ -1,3 +1,5 @@
+[![Build Status](https://cloud.drone.io/api/badges/Harvzor/fusion-markup-language/status.svg)](https://cloud.drone.io/Harvzor/fusion-markup-language)
+
 # Fusion Markup Language
 
 > One *markup language* to rule them all, One *markup language* to find them, One *markup language* to bring them all and in the darkness bind them
