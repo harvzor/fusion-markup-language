@@ -7,4 +7,6 @@ steps:
   commands:
   - npm install
 #   - npm test
+  - npm install -g istanbul
+  - istanbul cover test/test.js
   - ./node_modules/.bin/codecov
