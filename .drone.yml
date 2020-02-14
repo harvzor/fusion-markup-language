@@ -8,6 +8,5 @@ steps:
   - npm install
 #   - npm test
   - npm install -g istanbul
-  - istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec
-./node_modules/.bin/codecov
+  - istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./node_modules/.bin/codecov
   - ./node_modules/.bin/codecov
