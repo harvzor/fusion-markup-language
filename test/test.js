@@ -143,6 +143,49 @@ describe('FusionMarkupLanguage', () => {
             })
         })
 
+        it('should parse multiple nodes with XML in JSON in XML', () => {
+            const parsed = FML.parse(`
+                <?xml version="1.0" encoding="UTF-8" ?>
+                <people>
+                    <person>
+                        {
+                            "firstName": "Rick",
+                            "lastName": "Astley",
+                            "songs": [
+                                <song>Never Gonna Give You Up</song>
+                            ]
+                        }
+                    </person>
+                    <person>
+                        {
+                            "firstName": "Park",
+                            "lastName": "Jae-sang"
+                        }
+                    </person>
+                </people>
+            `)
+
+            assert.deepEqual(parsed, {
+                people: {
+                    person: [
+                        {
+                            firstName: "Rick",
+                            lastName: "Astley",
+                            songs: [
+                                {
+                                    song: "Never Gonna Give You Up"
+                                }
+                            ]
+                        },
+                        {
+                            firstName: "Park",
+                            lastName: "Jae-sang"
+                        }
+                    ]
+                }
+            })
+        })
+
         it('should parse XML in JSON', () => {
             const parsed = FML.parse(`
                 {
