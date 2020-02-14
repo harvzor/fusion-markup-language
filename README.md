@@ -1,4 +1,5 @@
 [![Build Status](https://cloud.drone.io/api/badges/Harvzor/fusion-markup-language/status.svg)](https://cloud.drone.io/Harvzor/fusion-markup-language)
+[![codecov](https://codecov.io/gh/Harvzor/fusion-markup-language/branch/master/graph/badge.svg)](https://codecov.io/gh/Harvzor/fusion-markup-language)
 
 # Fusion Markup Language
 
