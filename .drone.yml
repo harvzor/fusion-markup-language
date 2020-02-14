@@ -1,11 +1,32 @@
+---
 kind: pipeline
-name: default
+name: codecov
+
+steps:
+- name: codecov
+  image: node:8
+  commands:
+  - npm install
+  - npm install -g istanbul
+  - istanbul cover ./node_modules/mocha/bin/_mocha || ./node_modules/.bin/codecov
+
+trigger:
+  branch:
+  - master
+
+---
+kind: pipeline
+name: test
 
 steps:
 - name: test
-  image: node
+  image: node:8
   commands:
   - npm install
-#   - npm test
-  - npm install -g istanbul
-  - istanbul cover ./node_modules/mocha/bin/_mocha || ./node_modules/.bin/codecov
+  - npm test
+
+trigger:
+  branch:
+  - master
+
+---
