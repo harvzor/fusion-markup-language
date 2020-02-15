@@ -10,9 +10,9 @@ steps:
   - npm install -g istanbul
   - istanbul cover ./node_modules/mocha/bin/_mocha || ./node_modules/.bin/codecov
 
-# trigger:
-#   branch:
-#   - master
+trigger:
+  branch:
+  - master
 
 ---
 kind: pipeline
@@ -26,6 +26,6 @@ steps:
   - npm install
   - npm test
 
-# trigger:
-#   branch:
-#   - master
+trigger:
+  branch:
+  - master
