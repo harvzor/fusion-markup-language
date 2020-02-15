@@ -1,23 +1,17 @@
+---
 kind: pipeline
-type: docker
-name: codecov
+name: node6
 
 steps:
-- name: codecov
-  image: node:8
+- name: test
+  image: node:6
   commands:
   - npm install
-  - npm install -g istanbul
-  - istanbul cover ./node_modules/mocha/bin/_mocha || ./node_modules/.bin/codecov
-
-# trigger:
-#   branch:
-#   - master
+  - npm test
 
 ---
 kind: pipeline
-type: docker
-name: test
+name: node8
 
 steps:
 - name: test
@@ -26,6 +20,4 @@ steps:
   - npm install
   - npm test
 
-# trigger:
-#   branch:
-#   - master
+...
