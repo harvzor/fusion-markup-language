@@ -29,3 +29,18 @@ steps:
 trigger:
   branch:
   - master
+
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: npm
+  image: plugins/npm
+  settings:
+    username: harvzor
+    password:
+      from_secret: npm_token
+    email:
+      from_secret: npm_email
