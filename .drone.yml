@@ -1,5 +1,29 @@
 kind: pipeline
 type: docker
+name: default
+
+steps:
+- name: test
+  image: node:8
+  commands:
+  - npm install
+  - npm test
+- name: release
+  image: plugins/npm
+  settings:
+    username: harvzor
+    password:
+      from_secret: npm_token
+    email:
+      from_secret: npm_email
+
+trigger:
+  branch:
+  - master
+
+---
+kind: pipeline
+type: docker
 name: codecov
 
 steps:
@@ -13,34 +37,3 @@ steps:
 trigger:
   branch:
   - master
-
----
-kind: pipeline
-type: docker
-name: test
-
-steps:
-- name: test
-  image: node:8
-  commands:
-  - npm install
-  - npm test
-
-trigger:
-  branch:
-  - master
-
----
-kind: pipeline
-type: docker
-name: default
-
-steps:
-- name: npm
-  image: plugins/npm
-  settings:
-    username: harvzor
-    password:
-      from_secret: npm_token
-    email:
-      from_secret: npm_email
